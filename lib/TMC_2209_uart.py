@@ -38,7 +38,10 @@ class TMC_UART:
 
         # self.ser.reset_output_buffer()
         # self.ser.reset_input_buffer()
-        self.ser = UART(0, baudrate, bits=8, parity=None, stop=1, timeout=int(20000/baudrate*1000))
+        if baudrate == 115200 :
+            self.ser = UART(0, baudrate, bits=8, parity=None, stop=1, timeout=1) # 115200에서 timeout 1로 정상 작동 확인
+        else :
+            self.ser = UART(0, baudrate, bits=8, parity=None, stop=1, timeout=int(20000/baudrate*1000))
 
 #-----------------------------------------------------------------------
 # destructor
